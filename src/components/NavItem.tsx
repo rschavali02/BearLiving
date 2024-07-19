@@ -53,7 +53,7 @@ const NavItem = ({isAnyOpen, category, handleOpen, isOpen}: NavItemProps) => {
                                     <div className="relative aspect-video overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
                                     <Image
                                         src={item.imageSRC} 
-                                        alt='product catergory image' 
+                                        alt='Currently No Properties Available' 
                                         fill
                                         className = "object-cover object-center"
                                         />
