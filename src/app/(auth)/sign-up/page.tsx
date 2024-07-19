@@ -17,6 +17,7 @@ const Page = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<TAuthCredentialsValidator>({
     resolver: zodResolver(AuthCredentialsValidator),
   });
