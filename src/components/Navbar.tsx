@@ -104,7 +104,6 @@ const Navbar = () => {
                     </a>
                   </>
                 )}
-                <Cart />
               </div>
             </div>
           )}
