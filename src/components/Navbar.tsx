@@ -30,7 +30,7 @@ const Navbar = () => {
           <div className="border-b border-gray-200">
             <div className="flex h-16 items-center justify-between">
               <div className="ml-4 flex lg:ml-0">
-                <Image src="/logo.png" alt="Logo" className="h-12 w-12" width={48} height={48} />
+                <Image src="/logo.png" alt="Logo" className="h-20 w-20" width={50} height={50} />
               </div>
 
               {/* Mobile menu button */}

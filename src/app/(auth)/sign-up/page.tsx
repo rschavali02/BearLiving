@@ -1,4 +1,3 @@
-// Update your existing Page component
 "use client";
 
 import { Icons } from "@/components/Icons";
@@ -34,6 +33,7 @@ const Page = () => {
 
       if (response.ok) {
         console.log('User registered successfully');
+        reset(); // Reset the form fields
       } else {
         console.error('Error registering user');
       }
@@ -82,7 +82,6 @@ const Page = () => {
               </div>
             </form>
 
-            {/* Back to Home Button */}
             <Link href="/">
               <Button variant="outline" className="w-full">
                 Back to Home
