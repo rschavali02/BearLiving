@@ -11,6 +11,7 @@ Users can also join our waitlist for Updates!
 ## Technologies Used
 
 This project was built in React with the MERN stack, using Next.Js, Node.js, and Tailwind.CSS. We use MongoDB as out backend to keep track of user data.
+Users emails are stored in the backend, and then we email those users with their ranked list of best-fit sublets!
 
 ## Images of the project
 
