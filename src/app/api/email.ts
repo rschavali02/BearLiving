@@ -23,24 +23,27 @@ const emailSchema = new mongoose.Schema({
 // Create a model from the schema
 const Email = mongoose.models.Email || mongoose.model('Email', emailSchema);
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
-  await connectToDatabase();
-
-  if (req.method === 'POST') {
-    const { email, message } = req.body;
-
-    const newEmail = new Email({ email, message });
-    try {
-      await newEmail.save();
-      res.status(201).json(newEmail);
-    } catch (err) {
-      if (err instanceof Error) {
-        res.status(400).json({ error: err.message });
-      } else {
-        res.status(400).json({ error: "An unknown error occurred" });
+const emailHandler = async (req: NextApiRequest, res: NextApiResponse) => {
+    await connectToDatabase();
+  
+    if (req.method === 'POST') {
+      const { email, message } = req.body;
+  
+      const newEmail = new Email({ email, message });
+      try {
+        await newEmail.save();
+        res.status(201).json(newEmail);
+      } catch (err) {
+        if (err instanceof Error) {
+          res.status(400).json({ error: err.message });
+        } else {
+          res.status(400).json({ error: "An unknown error occurred" });
+        }
       }
+    } else {
+      res.status(405).json({ error: "Method not allowed" });
     }
-  } else {
-    res.status(405).json({ error: "Method not allowed" });
-  }
-};
+  };
+  
+  export default emailHandler;
+

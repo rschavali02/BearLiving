@@ -23,7 +23,7 @@ const getColumn = (data: any[][], colIndex: number): any[] => {
 
 const transformBuyerData = (data: RawBuyerData[]) => {
   // Transform raw data into Buyer type
-    // Ensure all data is mapped properly
+    // Ensure all data is mapped properly (Can use columns)
   return data.map(row => ({
     email: row[0],
     preferences: {
@@ -46,7 +46,7 @@ const transformBuyerData = (data: RawBuyerData[]) => {
 
 const transformSellerData = (data: RawSellerData[]) => {
   // Transform raw data into Seller type
-  // Ensure all data is mapped properly
+  // Ensure all data is mapped properly (Can use columns)
   return data.map(row => ({
     email: row[0],
     Furnished: row[1],
@@ -65,30 +65,32 @@ const transformSellerData = (data: RawSellerData[]) => {
   }));
 };
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
-  await connectToDatabase();
-
-  try {
-    const buyersRawData = await getSheetData(BUYER_SHEET_ID, 'Sheet1!A1:O1000');
-    const sellersRawData = await getSheetData(SELLER_SHEET_ID, 'Sheet1!A1:N1000');
-
-    const buyers = transformBuyerData(buyersRawData as RawBuyerData[]);
-    const sellers = transformSellerData(sellersRawData as RawSellerData[]);
-
-    const recommendations = matchSublets(buyers, sellers);
-
-    // Example: Sending email to the first buyer (extend this logic as needed)
-    const buyer = buyers[0]; // Example: getting the first buyer
-    const recommendedSublets = recommendations[0].recommendedSublets;
-
-    const emailText = recommendedSublets.map((sublet, index) => {
-      return `${index + 1}. Email: ${sublet.email}, Score: ${sublet.score}`;
-    }).join('\n');
-
-    await sendEmail(buyer.email, 'Your Sublet Recommendations', emailText);
-
-    res.status(200).json({ message: 'Recommendations sent via email' });
-  } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
+const matchHandler = async (req: NextApiRequest, res: NextApiResponse) => {
+    await connectToDatabase();
+  
+    try {
+      const buyersRawData = await getSheetData(BUYER_SHEET_ID, 'Sheet1!A1:O1000');
+      const sellersRawData = await getSheetData(SELLER_SHEET_ID, 'Sheet1!A1:N1000');
+  
+      const buyers = transformBuyerData(buyersRawData as RawBuyerData[]);
+      const sellers = transformSellerData(sellersRawData as RawSellerData[]);
+  
+      const recommendations = matchSublets(buyers, sellers);
+  
+      // Example: Sending email to the first buyer (extend this logic as needed)
+      const buyer = buyers[0]; // Example: getting the first buyer
+      const recommendedSublets = recommendations[0].recommendedSublets;
+  
+      const emailText = recommendedSublets.map((sublet, index) => {
+        return `${index + 1}. Email: ${sublet.email}, Score: ${sublet.score}`;
+      }).join('\n');
+  
+      await sendEmail(buyer.email, 'Your Sublet Recommendations', emailText);
+  
+      res.status(200).json({ message: 'Recommendations sent via email' });
+    } catch (error) {
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };
+  
+  export default matchHandler;

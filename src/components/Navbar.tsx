@@ -4,6 +4,7 @@ import { Icons } from "./Icons";
 import NavItems from "./NavItems";
 import { buttonVariants } from "./ui/button";
 import Cart from "./cart";
+import Image from 'next/image';
 
 const Navbar = () => {
   const user = null;
@@ -20,7 +21,7 @@ const Navbar = () => {
               {/* ToDo MobileNav */}
 
               <div className="ml-4 flex lg:ml-0">
-                <img src="/logo.png" alt="Logo" className="h-20 w-20" />
+                <Image src="/logo.png" alt="Logo" className="h-20 w-20" />
               </div>
 
               <div className="hidden z-50 lg:ml-8 lg:block lg:self-stretch">
