@@ -16,7 +16,7 @@ const sendConfirmationEmail = (email) => {
     from: process.env.EMAIL_USER,
     to: email,
     subject: 'Waitlist Confirmation',
-    text: 'Thank you for joining our waitlist! - BearLiving Team',
+    text: 'Thank you for joining our waitlist!',
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
@@ -29,6 +29,8 @@ const sendConfirmationEmail = (email) => {
 };
 
 export default async function handler(req, res) {
+  console.log('Received request with body:', req.body); // Log the request body
+
   await dbConnect();
 
   const { email, password } = req.body;
@@ -37,8 +39,10 @@ export default async function handler(req, res) {
     const newUser = new User({ email, password });
     await newUser.save();
     sendConfirmationEmail(email);
+    console.log('User registered successfully in the database'); // Log success message
     res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
+    console.error('Error registering user:', error); // Log error message
     res.status(400).json({ error: 'Error registering user' });
   }
 }
