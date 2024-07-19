@@ -12,7 +12,7 @@ const Cart = () => {
 
     const itemCount = 1
 
-    const fee = 1
+    const fee = 0
 
     return <Sheet>
         <SheetTrigger className="group -m-2 flex items-center p-2">
@@ -26,7 +26,7 @@ const Cart = () => {
         <SheetContent className="flex w-full flex-col pr-o sm:max-w-lg">
         <SheetHeader className = "space-y-2.5 pr-6">
             <SheetTitle >
-                Cart(1)
+                Cart
             </SheetTitle>
         </SheetHeader>
         {itemCount > 0 ? (
@@ -47,9 +47,6 @@ const Cart = () => {
                             </span>
                         </div>
                         <div className="flex">
-                            <span className = "flex-1">
-                                If I wanna charge something Fee
-                            </span>
                             <span>
                                 {formatPrice(fee)}
                             </span>
@@ -71,7 +68,7 @@ const Cart = () => {
                             className={buttonVariants({
                                 className: "w-full",
                             })}>
-                                Continue to Checkout
+                                    Checkout Under Construction
                             </Link>
                         
                         </SheetTrigger>

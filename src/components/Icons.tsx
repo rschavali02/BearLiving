@@ -14,7 +14,7 @@ export const Icons = {
                 width="320" 
                 height="306" 
                 transform="scale(0.8 0.85)" 
-                xlinkHref="../public/.png" 
+                href="public/logo.png" 
                 style={{ isolation: "isolate" }}
             />
         </svg>

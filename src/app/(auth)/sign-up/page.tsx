@@ -2,14 +2,13 @@
 
 import { Icons } from "@/components/Icons";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { cn } from "@/lib/utils";
-import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import {TAuthCredentialsValidator, AuthCredentialsValidator } from "@/lib/validators/account-credentials-validator";
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { TAuthCredentialsValidator, AuthCredentialsValidator } from "@/lib/validators/account-credentials-validator";
 import { trpc } from "@/trpc/client";
 
 const Page = () => {
@@ -19,34 +18,23 @@ const Page = () => {
         formState: { errors },
     } = useForm<TAuthCredentialsValidator>({
         resolver: zodResolver(AuthCredentialsValidator),
-    })
+    });
 
-    const {mutate, isLoading} = trpc.auth.createPayloadUser.useMutation({
+    const { mutate, isLoading } = trpc.auth.createPayloadUser.useMutation({});
 
-    })
-
-    const onSubmit = ({email, password}: TAuthCredentialsValidator) => {
-        mutate({email, password})
-    }
+    const onSubmit = ({ email, password }: TAuthCredentialsValidator) => {
+        mutate({ email, password });
+    };
 
     return (
         <>
             <div className="container relative flex pt-20 flex-col items-start justify-start lg:px-0">
                 <div className="mx-auto flex w-full flex-col justify-start space-y-6 sm:w-[350px]">
                     <div className="flex flex-col items-center space-y-2 text-center">
-                        <Icons.logo className="h-20 w-20" />
+                    <img src="/BearLiving.png" alt="Bear Living" className="h-30 w-40" />
                         <h1 className="text-2xl font-bold">
-                            Create an account
+                            Enter your Email, Join our Waitlist
                         </h1>
-
-                        <Link className={buttonVariants({
-                            variant: "link",
-                            className: "text-muted-foreground gap-1.5"
-                        })}
-                            href={"/sign-in"}>
-                            Already have an account? Sign In
-                            <ArrowRight className="h-4 w-4" />
-                        </Link>
                     </div>
 
                     <div className="grid gap-6">
@@ -65,7 +53,7 @@ const Page = () => {
                                     <Label htmlFor="password">Password</Label>
                                     <Input
                                         {...register('password')}
-                                        type= 'password'
+                                        type='password'
                                         className={cn({
                                             "focus-visible: ring-red-500": errors.password,
                                         })}
@@ -77,12 +65,18 @@ const Page = () => {
                                 </Button>
                             </div>
                         </form>
-                    </div>
 
+                        {/* Back to Home Button */}
+                        <Link href="/">
+                            <Button variant="outline" className="w-full">
+                                Back to Home
+                            </Button>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </>
     );
-}
+};
 
 export default Page;

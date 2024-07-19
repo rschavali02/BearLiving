@@ -22,17 +22,17 @@ export const authRouter = router({
       })
 
       if (users.length !== 0)
-        throw new TRPCError({ code: 'CONFLICT' })
+        throw new TRPCError({ code: 'CONFLICT', message: 'User already exists' })
 
-      await payload.create({
-        collection: 'users',
-        data: {
-          email,
-          password,
-          role: 'user',
-        },
-      })
-
-      return { success: true, sentToEmail: email }
-    }),
+        await payload.create({
+          collection: 'users',
+          data: {
+            email,
+            password,
+            role: 'user',
+          },
+        })
+  
+        return { success: true, sentToEmail: email }
+      }),
 }) 
