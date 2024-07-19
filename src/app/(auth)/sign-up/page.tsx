@@ -49,7 +49,7 @@ const Page = () => {
       <div className="container relative flex pt-20 flex-col items-start justify-start lg:px-0">
         <div className="mx-auto flex w-full flex-col justify-start space-y-6 sm:w-[350px]">
           <div className="flex flex-col items-center space-y-2 text-center">
-            <Image src="/BearLiving.png" alt="Bear Living" className="h-30 w-40" width={50} height={50} />
+            <Image src="/BearLiving.png" alt="Bear Living" className="h-20 w-20" width={50} height={50} />
             <h1 className="text-2xl font-bold">
               Enter your Email, Join our Waitlist
             </h1>
