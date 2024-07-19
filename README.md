@@ -2,7 +2,7 @@
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Why Was This Buily
+## Why Was This Built
 
 Many WashU students struggle with finding available sublets that match their preferences. This inspired the conception of BearLiving. On out platform, user can fill out a google form as a buyer or a seller, and utilizing google sheets api, we build an algorithm that takes into account the importance of difference buyer preferences to different seller offerings. We then email the buyer a ranked list of all available sublets with the seller's contact information, using JavaScript's NodeMailer, making the process easy and convinient for students.
 
