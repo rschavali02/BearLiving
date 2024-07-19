@@ -29,6 +29,10 @@ const sendConfirmationEmail = (email) => {
 };
 
 export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ message: 'Method Not Allowed' });
+  }
+
   console.log('Received request with body:', req.body); // Log the request body
 
   await dbConnect();
