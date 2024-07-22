@@ -66,7 +66,7 @@ export default function Home() {
           <p className="mt-6 text-lg max-w-prose text-muted-foreground">
             At BearLiving, we connect students with available sublets.<br />
             Fill out the Google form in the top right to BUY or SELL. <br />
-            Buyers receive a ranked list of sublets by best fit, emailed directly to you for time-efficient shopping!
+            Buyers receive a ranked list of sublets organized by best fit, emailed directly to you for time-efficient shopping!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
             <Link href='/sign-up' className={buttonVariants()}>
